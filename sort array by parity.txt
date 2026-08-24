@@ -1,0 +1,26 @@
+https://leetcode.com/problems/sort-array-by-parity/?envType=problem-list-v2&envId=two-pointers
+
+
+
+
+
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        int l=0, r=nums.size()-1;
+
+        while(l<r){
+            if(nums[l]%2==1 && nums[r]%2==0){
+                int t = nums[l];
+                nums[l] = nums[r];
+                nums[r] = t;
+                l++;
+                r--;
+            }else{
+                if(nums[l]%2==0)l++;
+                if(nums[r]%2!=0)r--;
+            }
+        }
+        return nums;
+    }
+};

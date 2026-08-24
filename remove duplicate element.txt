@@ -1,0 +1,36 @@
+https://leetcode.com/problems/remove-element/?envType=problem-list-v2&envId=two-pointers
+
+
+
+
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int len = nums.size();
+        if(len == 0) return 0;
+
+        int right = len-1;
+        int left = 0;
+
+        while(left <= right)
+        {
+            if(nums[left] == val && nums[right] != val)
+            {
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+                left++;
+                right--;
+            }
+            else if(nums[left] != val) left++;
+            else if(nums[right] == val) right--;
+        }
+        if(left == 0)
+        {
+            nums.clear();
+            return 0;
+        }
+        return left;
+    }
+};

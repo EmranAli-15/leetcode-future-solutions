@@ -1,0 +1,38 @@
+https://leetcode.com/problems/merge-strings-alternately/?envType=problem-list-v2&envId=two-pointers
+
+
+
+
+
+
+
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+        int l1 = word1.size();
+        int l2 = word2.size();
+
+        int a=0, b=0;
+
+        string s = "";
+
+        while(a<l1 || b<l2){
+            if(a<l1 && b<l2){
+                s+=word1[a];
+                s+=word2[b];
+                a++;
+                b++;
+            }
+            else if(a<l1){
+                s+=word1[a];
+                a++;
+            }
+            else if(b<l2){
+                s+=word2[b];
+                b++;
+            }
+        }
+
+        return s;
+    }
+};
