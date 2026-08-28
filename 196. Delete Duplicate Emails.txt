@@ -1,0 +1,19 @@
+https://leetcode.com/problems/delete-duplicate-emails/description/
+
+
+
+
+
+
+-- Write your PostgreSQL query statement below
+WITH temp as(
+    SELECT id, email,
+    ROW_NUMBER()OVER(
+        PARTITION BY email
+        ORDER BY id ASC
+    ) AS d_email
+    FROM Person
+)
+DELETE FROM Person
+WHERE id IN
+(SELECT id FROM temp WHERE d_email > 1);
