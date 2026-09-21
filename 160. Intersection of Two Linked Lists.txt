@@ -1,0 +1,40 @@
+https://leetcode.com/problems/intersection-of-two-linked-lists/description/?envType=problem-list-v2&envId=hash-table
+
+
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
+        unordered_map<ListNode*, int> store;
+
+        while (headA || headB) {
+            if (headA) {
+                if (store.find(headA) == store.end()) {
+                    store.insert({headA, 1});
+                } else {
+                    return headA;
+                }
+                headA = headA->next;
+            }
+            if (headB) {
+                if (store.find(headB) == store.end()) {
+                    store.insert({headB, 1});
+                } else {
+                    return headB;
+                }
+                headB = headB->next;
+            }
+        }
+
+        return NULL;
+    }
+};
